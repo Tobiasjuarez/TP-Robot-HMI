@@ -1,0 +1,53 @@
+name: APK
+
+# Compila el APK en GitHub, corre los tests y, cuando se sube un tag v*,
+# publica el APK en un release para descargarlo e instalarlo.
+on:
+  push:
+    branches: [main]
+    tags: ["v*"]
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  apk:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: "21"
+
+      - uses: gradle/actions/setup-gradle@v4
+
+      - name: Tests de CommandRules
+        run: ./gradlew --no-daemon testDebugUnitTest
+
+      - name: Compilar APK
+        run: ./gradlew --no-daemon assembleDebug
+
+      - name: Renombrar APK
+        run: cp app/build/outputs/apk/debug/app-debug.apk GuiaUADE.apk
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: GuiaUADE-apk
+          path: GuiaUADE.apk
+
+      - name: Publicar en un release
+        if: startsWith(github.ref, 'refs/tags/v')
+        uses: softprops/action-gh-release@v2
+        with:
+          name: Guía UADE ${{ github.ref_name }}
+          files: GuiaUADE.apk
+          body: |
+            APK instalable de Guía UADE (TP HMI/HRI, Desarrollo de Aplicaciones I).
+            Funciona sin robot, servidor ni internet: el robot es simulado.
+
+            Para instalarlo en un Android: descargar `GuiaUADE.apk`, abrirlo y permitir "instalar apps de origen desconocido".
+            En el emulador: arrastrar el archivo a la ventana del emulador.
