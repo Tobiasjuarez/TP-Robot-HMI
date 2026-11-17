@@ -45,7 +45,10 @@ fun SimulatorScreen(
 
         ScenarioCard("1. Misión normal", "Iniciá una misión desde el Panel y dejala terminar.")
 
-        ScenarioCard("2. Batería baja", "Genera la advertencia y habilita/recomienda volver a punto seguro.") {
+        ScenarioCard(
+            "2. Batería baja",
+            "18 %: advertencia y regreso recomendado. 8 % en misión: el robot se detiene sin dejar sola a la persona y pide ayuda.",
+        ) {
             OutlinedButton(onClick = { onBattery(18) }, modifier = Modifier.weight(1f)) { Text("Batería 18 %") }
             OutlinedButton(onClick = { onBattery(8) }, modifier = Modifier.weight(1f)) { Text("Batería 8 %") }
         }
@@ -54,7 +57,7 @@ fun SimulatorScreen(
             OutlinedButton(onClick = onDisconnect, modifier = Modifier.fillMaxWidth()) { Text("Cortar conexión 15 s") }
         }
 
-        ScenarioCard("4. Incidente", "Obstáculo en la ruta: el robot se frena y pide una decisión. Requiere misión en curso.") {
+        ScenarioCard("4. Incidente", "Paso bloqueado (por ejemplo, pasillo lleno en el cambio de turno): el robot se frena y pide una decisión. Requiere misión en curso.") {
             OutlinedButton(onClick = onObstacle, modifier = Modifier.fillMaxWidth()) { Text("Generar obstáculo") }
         }
 

@@ -38,7 +38,14 @@ enum class MissionStatus(val label: String) {
     CANCELADA("Cancelada"),
 }
 
-data class Waypoint(val name: String, val zone: String, val x: Float, val y: Float)
+data class Waypoint(
+    val name: String,
+    val zone: String,
+    val x: Float,
+    val y: Float,
+    /** Lo que el robot dice al llegar a este punto (HRI), si aplica. */
+    val announcement: String? = null,
+)
 
 data class MissionTemplate(
     val id: String,

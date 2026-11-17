@@ -66,6 +66,13 @@ class CommandRulesTest {
     }
 
     @Test
+    fun reanudar_conBateriaCritica_deshabilitado() {
+        val t = telemetry(OperationalState.REQUIERE_AYUDA, battery = 8, missionStatus = MissionStatus.PAUSADA)
+        assertFalse(check(CommandType.REANUDAR, t).enabled)
+        assertTrue(check(CommandType.VOLVER_A_BASE, t).enabled)
+    }
+
+    @Test
     fun sinConexion_soloOrdenesDeSeguridad() {
         val t = telemetry(OperationalState.EN_MISION, missionStatus = MissionStatus.EN_CURSO)
         assertFalse(check(CommandType.PAUSAR, t, stale = true).enabled)

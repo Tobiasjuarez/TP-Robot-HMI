@@ -10,7 +10,7 @@ flowchart LR
     REPO[["RobotRepository<br/>(interfaz)"]]
     SIMC[["SimulationControls<br/>(solo demo)"]]
     SIM["SimulatedRobotRepository"]
-    PROF["ServiceProfile<br/>(caso de uso)"]
+    PROF["GuiaUadeProfile<br/>(caso de uso)"]
     DAO["EventLogDao"]
     DB[("Room<br/>event_log")]
 

@@ -18,6 +18,9 @@ import kotlinx.coroutines.flow.StateFlow
 interface RobotRepository {
     val robots: List<RobotInfo>
     val serviceName: String
+
+    /** Nombre del punto seguro (adonde vuelve el robot). */
+    val safePointName: String
     val missions: List<MissionTemplate>
 
     /** Última telemetría recibida. Puede quedar vieja si se corta la conexión. */

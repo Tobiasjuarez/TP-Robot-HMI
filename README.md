@@ -1,19 +1,26 @@
-# Robot HMI — TP DAI (UADE)
+# Guía UADE — TP DAI (UADE)
 
-App Android de operación y supervisión para un robot de servicio Unitree (Go2 / G1) **simulado**.
-Trabajo Práctico grupal de Desarrollo de Aplicaciones I.
+App Android para operar y supervisar un **Unitree Go2 simulado que guía a personas ciegas o con baja visión** dentro del Campus UADE Monserrat.
+Trabajo Práctico grupal de Desarrollo de Aplicaciones I (Interfaz HMI/HRI para robots de servicio).
 
-> Estado: **repo base**. La arquitectura, el simulador, los comandos y el historial ya funcionan.
-> El caso de uso de ejemplo (inspección de planta con Go2) se cambia en un solo archivo.
+- Caso de uso, actores, justificación y riesgos: [`docs/caso-de-uso.md`](docs/caso-de-uso.md)
+- Plan de desarrollo y forma de trabajo: [`docs/PLAN.md`](docs/PLAN.md)
+- Diseño en Figma (prototipo navegable, flujo normal y con falla, mapa de navegación): https://www.figma.com/design/4jqfkUGmYIYXSamN4MWbRV
 
 ## Cómo correrlo
 
 1. Clonar el repo y abrir la carpeta en **Android Studio** (*File → Open*).
-2. Esperar el *Gradle Sync* y correr en un emulador o un celular (minSdk 24).
+2. Esperar el *Gradle Sync* y correr en un emulador o un celular (minSdk 26).
 3. No necesita robot, servidor ni internet.
 
-**Si el sync falla por KSP:** en `gradle/libs.versions.toml`, cambiar `ksp = "..."` por la versión que
-sugiera Android Studio y volver a sincronizar. Las versiones de Kotlin, KSP, Room y AGP tienen que ser compatibles entre sí.
+### Si aparece "Cannot find a Java installation … languageVersion=25"
+
+Al abrir el proyecto, Android Studio crea `gradle/gradle-daemon-jvm.properties` pidiendo un Java 25 que Gradle no encuentra. Igual que en Rodando:
+
+1. **Settings › Build, Execution, Deployment › Build Tools › Gradle › Gradle JDK** → elegir **jbr-25** (el Java que trae Android Studio).
+2. Borrar `gradle/gradle-daemon-jvm.properties` (no se sube al repo) y volver a sincronizar.
+
+El aviso "Gradle 9.5.0 is not the latest minor version" se puede ignorar: usamos la misma versión que Rodando.
 
 ## Stack
 
@@ -31,7 +38,8 @@ app/src/main/java/ar/edu/uade/robothmi/
 │   ├── local/                   # Room: EventLogEntity, EventLogDao, AppDatabase
 │   └── sim/
 │       ├── SimulatedRobotRepository.kt   # Robot simulado: tick, misiones, comandos, fallas
-│       └── ServiceProfile.kt             # ⇐ TODO lo específico del caso de uso
+│       ├── ServiceProfile.kt             # Interfaz del caso de uso
+│       └── GuiaUadeProfile.kt            # ⇐ Guía UADE: recorridos, variables, escenario propio
 ├── ui/
 │   ├── RobotViewModel.kt        # RobotUiState (StateFlow) + eventos
 │   ├── components/              # Componentes reutilizables (StatusPill, MetricTile, ...)
@@ -43,17 +51,15 @@ app/src/main/java/ar/edu/uade/robothmi/
 
 Más detalle en [`docs/arquitectura.md`](docs/arquitectura.md).
 
-## Adaptarlo a nuestro caso de uso
+## El caso de uso en el código
 
-Todo lo específico del servicio está en `data/sim/ServiceProfile.kt`:
+Todo lo específico del servicio está en `data/sim/GuiaUadeProfile.kt`:
 
-- `base`: punto seguro / base de carga
-- `missions`: recorridos (waypoints con zona y coordenadas)
-- `metrics()`: **las 3 variables del servicio** que pide la consigna
-- `onWaypointReached()`: qué pasa en cada punto (lecturas, hallazgos)
-- `customScenario()`: el **escenario propio** (escenario 5)
-
-Para cambiar de caso: crear otra clase que implemente `ServiceProfile` y pasarla en `AppContainer`.
+- `base`: el **Punto de encuentro** (entrada peatonal de Lima), adonde vuelve el robot
+- `missions`: viajes al Aula 225 (Lima 2, 2.º piso), a UADE Labs y a la parada de autos de Av. Independencia, sobre el plano del Mapa UADE ([esquema](docs/recorrido-campus.svg))
+- `metrics()`: **asa**, **distancia al destino** y **gente en el pasillo**, más el último aviso por voz
+- `customScenario()`: **la persona suelta el asa** (escenario 5)
+- `autoReturnOnCriticalBattery = false`: con batería crítica el robot no deja sola a la persona
 
 ## Qué cubre de la consigna
 
@@ -69,18 +75,11 @@ Para cambiar de caso: crear otra clase que implemente `ServiceProfile` y pasarla
 | 5 escenarios | [`docs/escenarios.md`](docs/escenarios.md) |
 | Decisiones y limitaciones | [`docs/decisiones.md`](docs/decisiones.md) |
 
-## Pendiente (TODO del grupo)
-
-- [ ] Definir el caso de uso final y adaptar `ServiceProfile`
-- [ ] Aplicar el diseño del Figma (colores, tipografía, componentes) en `ui/theme` y `ui/components`
-- [ ] Vista de mapa / esquema del recorrido (opcional: Canvas con los waypoints)
-- [ ] Diagrama de arquitectura final (exportar el de `docs/arquitectura.md`)
-- [ ] Capturas/video de los 5 escenarios
-- [ ] Completar `docs/decisiones.md`
-
 ## Cómo trabajamos en el repo
 
-- `main` siempre compila. Cada uno trabaja en una rama: `feature/<algo>` (ej. `feature/mapa`).
-- Pull Request a `main`; lo revisa al menos otro integrante.
-- No commitear `local.properties`, `build/` ni `.idea/` (ya están en `.gitignore`).
-- Tests de reglas: `./gradlew test` (o botón ▶ sobre `CommandRulesTest`).
+Igual que en Rodando (detalle en [`docs/PLAN.md`](docs/PLAN.md)):
+
+- `main` siempre compila. Una rama por etapa: `feature/<algo>`.
+- Commits chicos con prefijo: `feat:`, `fix:`, `test:`, `docs:`, `chore:`.
+- Pull request con la plantilla (qué cambia, punto de la consigna, cómo se probó, uso de IA); lo revisa otro integrante.
+- Tests de reglas: `./gradlew test`.
