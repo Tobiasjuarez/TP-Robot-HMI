@@ -8,4 +8,4 @@
 - [`escenarios.md`](escenarios.md) — Paso a paso de los cinco escenarios de prueba.
 - [`evidencias/`](evidencias/) — Capturas de los cinco escenarios.
 - [`decisiones.md`](decisiones.md) — Registro de decisiones y limitaciones.
-- Diseño en Figma: https://www.figma.com/design/4jqfkUGmYIYXSamN4MWbRV (página "Componentes": componentes con sus estados; "Prototipo": 12 pantallas con el flujo normal y el flujo con falla; "Mapa de navegación").
+- Diseño en Figma: https://www.figma.com/design/4jqfkUGmYIYXSamN4MWbRV (página "Componentes": componentes con sus estados; "Wireframes": 7 pantallas en baja fidelidad con notas numeradas; "Prototipo": 12 pantallas con el flujo normal y el flujo con falla; "Mapa de navegación"; "Flujo de casos de uso": carriles de persona, operador y robot, con los flujos alternativos).
