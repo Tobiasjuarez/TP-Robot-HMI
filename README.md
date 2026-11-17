@@ -14,9 +14,12 @@ Trabajo Práctico grupal de Desarrollo de Aplicaciones I (Interfaz HMI/HRI para 
 
 ### Si aparece "Cannot find a Java installation … languageVersion=25"
 
-Android Studio a veces crea `gradle/gradle-daemon-jvm.properties` pidiendo Java 25. Borrá ese archivo (no se sube al repo)
-o elegí en **Settings › Build, Execution, Deployment › Build Tools › Gradle › Gradle JDK** un JDK instalado
-(por ejemplo, el *Embedded JDK* de Android Studio) y volvé a sincronizar.
+Al abrir el proyecto, Android Studio crea `gradle/gradle-daemon-jvm.properties` pidiendo un Java 25 que Gradle no encuentra. Igual que en Rodando:
+
+1. **Settings › Build, Execution, Deployment › Build Tools › Gradle › Gradle JDK** → elegir **jbr-25** (el Java que trae Android Studio).
+2. Borrar `gradle/gradle-daemon-jvm.properties` (no se sube al repo) y volver a sincronizar.
+
+El aviso "Gradle 9.5.0 is not the latest minor version" se puede ignorar: usamos la misma versión que Rodando.
 
 ## Stack
 
