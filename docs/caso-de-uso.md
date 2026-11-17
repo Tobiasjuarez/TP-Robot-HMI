@@ -33,13 +33,34 @@ Otras misiones: Biblioteca (piso 1) y Bedelía (planta baja). **El plano de la a
 
 | Alternativa | Qué le falta |
 | --- | --- |
-| Acompañante humano | Es lo mejor en calidez, pero no siempre hay alguien disponible. El robot **complementa**, no reemplaza. |
+| Acompañante humano | Es lo mejor en calidez, pero genera dependencia y no siempre hay alguien disponible. Ver la sección siguiente. |
 | Señalética, piso podotáctil | Ayuda a orientarse, pero no guía físicamente ni avisa obstáculos que cambian (gente, sillas). |
 | App de navegación en el celular | Indica, pero no tira del asa ni frena ante un obstáculo. Requiere manejar el teléfono mientras se camina. |
 | Robot con ruedas | Más barato, pero no se adapta a desniveles y escalones. |
 | **G1 (humanoide)** | Más pesado y alto, menos batería en uso continuo, y su forma no se asocia a guiar. |
 
 El Go2 se elige por **forma y altura parecidas a las de un perro guía**, por moverse en desniveles y porque se lo puede equipar con un asa.
+
+## ¿Por qué no alcanza con una persona que acompañe?
+
+**El robot no reemplaza al acompañante: le saca la dependencia.** La persona llama a alguien cuando quiere hablar, no cuando necesita llegar.
+
+1. **Autonomía.** Con un acompañante, la persona va cuando el otro puede y adonde el otro la lleva. En un museo de Tokio, visitantes ciegos guiados por un robot (CaBot) pasaron cerca del 30 % de la visita explorando sin ayuda humana, lo describieron como mucho más autónomo que sus visitas anteriores y prefirieron llamar al personal solo para preguntas puntuales, en lugar de ir acompañados todo el tiempo ([Kayukawa et al., CHI 2023](https://a11y-paradise.onrender.com/reviews/69e1a3de3624507234db7dbf)).
+2. **Ritmo propio.** En ese mismo estudio, poder elegir el propio ritmo recibió 6–7 sobre 7.
+3. **Disponibilidad en los picos.** El acompañante falta justo cuando más se lo necesita: cambio de turno, turno noche, días de examen de ingreso (UADE los toma presencialmente en el Campus Monserrat, Lima 757: [cronograma SIA](https://uade.edu.ar/media/wumc5ffi/sia-marzo-2026.pdf)). El robot está siempre.
+4. **Escala (y es lo que justifica nuestra HMI).** Con acompañantes, cada persona ocupa a alguien del personal todo el viaje. Con robots, **un operador supervisa varios viajes a la vez** y solo interviene en los incidentes.
+5. **Privacidad y dignidad.** No hay que explicarle la situación a un desconocido cada vez, ni ir acompañado a un trámite personal en Bedelía.
+6. **Constancia.** El robot avisa siempre los mismos escalones, puertas y giros; la calidad del acompañamiento humano depende de quién toque.
+7. **Los perros guía son muy escasos en Argentina.** Un proyecto en Diputados señala que la mayoría de los perros guía que se usan en el país se entrenaron en EE. UU. ([HCDN, 2015](https://www4.hcdn.gob.ar/dependencias/dcomisiones/periodo-133/133-1949.pdf)), y la escuela argentina había entregado poco más de 20 perros desde su fundación ([MDZ, 2021](https://www.mdzol.com/sociedad/2021/7/21/el-aporte-del-perro-guia-para-las-personas-con-discapacidad-visual-174054.html/amp)). Además, un perro guía no conoce el edificio: el robot sí tiene el mapa y lleva a un destino.
+8. **Hay evidencia de aceptación.** Usuarios ciegos dijeron que CaBot superó ampliamente sus expectativas, lo compararon con un perro guía o un guía vidente y reportaron confianza y sensación de seguridad, sobre todo en lugares desconocidos ([CaBot, ASSETS 2019](https://research.ibm.com/publications/cabot-designing-and-evaluating-an-autonomous-navigation-robot-for-blind-people)).
+
+**Lo que hay que reconocer en la defensa:** el acompañante humano es mejor en calidez y en situaciones imprevistas. Por eso el diseño deja siempre un humano a un paso: el operador puede mandar a alguien en cualquier momento, y el robot nunca deja sola a la persona.
+
+## La sede
+
+- Campus UADE Monserrat: Lima 775 (torre Lima 2) y Lima 757 ([fact sheet UADE](https://www.uade.edu.ar/media/ibnhqypk/fact-sheet-esp-2023.pdf)), más el edificio principal sobre la Av. 9 de Julio.
+- No encontramos un plano interior público con aulas. Lo más cercano son las plantas del edificio principal publicadas por los arquitectos (subsuelos, planta baja y niveles 1, 2, 8, 9 y 10) en [ArchDaily](https://www.archdaily.com/1010800/campus-uade-main-building-oficina-urbana-converti-plus-de-marco-arquitectos).
+- **Propuesta:** armar el esquema del recorrido recorriendo la sede (Hall → ascensores → un aula real que cursemos), usando esas plantas como base. Hasta entonces, el plano de la app es ilustrativo.
 
 ## Capacidades: lo que trae y lo que requiere
 
