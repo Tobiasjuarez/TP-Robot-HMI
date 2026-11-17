@@ -1,6 +1,7 @@
 *.iml
 .gradle
 /local.properties
+local.properties
 /.idea
 .DS_Store
 /build
@@ -8,6 +9,10 @@
 /captures
 .externalNativeBuild
 .cxx
-.kotlin
+/.kotlin
 *.apk
 *.aab
+
+# Lo genera Android Studio pidiendo un JDK fijo (Java 25) que puede no estar instalado.
+# Sin este archivo, Gradle usa el JDK configurado en Android Studio (igual que en Rodando).
+/gradle/gradle-daemon-jvm.properties
