@@ -12,7 +12,7 @@ Este documento cuenta cómo se construyó la app, etapa por etapa, qué decision
 | --- | --- | --- | --- |
 | 0 | Repo base: MVVM, robot simulado, Room, pantallas y documentación | — (commit inicial) | Hecha |
 | 1 | Gradle como Rodando y caso de uso Guía UADE sobre el plano del Campus Monserrat | #1 | Hecha |
-| 2 | Figma: componentes, 12 pantallas, flujo normal, flujo con falla y mapa de navegación | — (en Figma) | Hecha |
+| 2 | Figma: componentes, wireframes, 12 pantallas, flujo normal, flujo con falla, mapa de navegación y flujo de casos de uso | — (en Figma) | Hecha |
 | 3 | Documentación con el formato de Rodando | #2 | Hecha |
 | 4 | Evidencias de los cinco escenarios, APK en un release y video | — | En curso |
 
@@ -47,7 +47,7 @@ Este documento cuenta cómo se construyó la app, etapa por etapa, qué decision
 
 ### Etapa 2 · Figma
 
-- [Archivo de Figma](https://www.figma.com/design/4jqfkUGmYIYXSamN4MWbRV) con tres páginas: componentes con estados normal, deshabilitado, advertencia y error; prototipo con 12 pantallas y cuatro puntos de inicio (flujo normal, asa suelta, sin conexión, batería crítica); mapa de navegación.
+- [Archivo de Figma](https://www.figma.com/design/4jqfkUGmYIYXSamN4MWbRV) con cinco páginas: componentes con estados normal, deshabilitado, advertencia y error; wireframes de 7 pantallas en baja fidelidad con notas numeradas; prototipo con 12 pantallas y cuatro puntos de inicio (flujo normal, asa suelta, sin conexión, batería crítica); mapa de navegación; y flujo de casos de uso con carriles (persona, operador, robot) y los flujos alternativos de obstáculo, asa suelta, batería baja y sin conexión.
 
 ### Etapa 3 · Documentación (#2)
 
