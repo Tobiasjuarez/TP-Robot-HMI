@@ -15,6 +15,11 @@
 | 9 | Reanudar tras un incidente exige reconocer la alerta crítica | Obliga a que el operador lea qué pasó antes de decidir |
 | 10 | Con batería crítica el robot vuelve solo, salvo que el operador lo haya detenido o espere una decisión | No mover el robot en contra de una orden explícita del operador |
 | 11 | Estados siempre con texto + símbolo + color | Accesibilidad: no depender solo del color |
+| 12 | Con batería crítica, en un viaje, el robot se detiene junto a la persona y pide ayuda (no vuelve solo) | Un servicio de guía no puede dejar sola a una persona que no ve |
+| 13 | No se puede reanudar con batería crítica; sí volver al Punto de encuentro | Evitar quedarse sin batería a mitad del recorrido |
+| 14 | El operador ve el "último aviso por voz" | Saber qué escuchó la persona antes de decidir (HRI visible en la HMI) |
+| 15 | El historial guarda viajes y eventos, nunca quién es la persona | La discapacidad es un dato sensible |
+| 16 | Misma configuración de Gradle que Rodando (Kotlin plugin, KSP 2.3.0, Room 2.7.2) | Ya probada en nuestras máquinas; KSP no funciona con el Kotlin integrado de AGP 9 |
 
 ## Limitaciones
 
@@ -23,6 +28,9 @@
 - Una orden que vence por timeout no se reenvía ni se ejecuta después (en un sistema real podría llegar tarde).
 - Un solo robot simulado y un solo operador; no hay roles ni permisos.
 - El contrato JSON es una propuesta del grupo, **no** el protocolo oficial de Unitree.
-- Sensores específicos del servicio (p. ej. cámara térmica) requerirían equipamiento adicional sobre el robot base.
+- El asa con sensor y la voz bidireccional requieren equipamiento adicional sobre el Go2.
+- Un Go2 no puede usar los botones del ascensor: requiere integración con el edificio o personal.
+- El plano de la sede es ilustrativo; los avisos por voz son textos, no audio.
+- Cualquier prueba con personas reales requeriría entorno controlado y supervisión permanente.
 
 _(Completar con las decisiones del grupo.)_
