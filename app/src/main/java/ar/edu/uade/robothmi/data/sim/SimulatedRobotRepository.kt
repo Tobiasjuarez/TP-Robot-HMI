@@ -82,6 +82,7 @@ class SimulatedRobotRepository(
         ),
     )
     override val serviceName: String get() = profile.serviceName
+    override val safePointName: String get() = profile.base.name
     override val missions: List<MissionTemplate> get() = profile.missions
     override val customScenarioLabel: String get() = profile.customScenarioLabel
 
@@ -109,6 +110,9 @@ class SimulatedRobotRepository(
     private var returnFromY = 0f
     private var returnTicks = 0
     private var returnTicksTotal = 1
+
+    /** El robot se frenó por un obstáculo: al reanudar, replanifica la ruta. */
+    private var replanOnResume = false
 
     private var lowBatteryWarned = false
     private var criticalBatteryWarned = false
@@ -163,6 +167,7 @@ class SimulatedRobotRepository(
             OperationalState.VOLVIENDO_A_BASE -> advanceReturn()
             else -> speed = 0f
         }
+        profile.onTick(simContext(), random)?.let { raiseServiceEvent(it) }
 
         val linkDown = isLinkDown()
         if (linkDown && !wasDisconnected) {
@@ -208,9 +213,34 @@ class SimulatedRobotRepository(
         },
         position = Position(x, y, zone),
         speedMps = speed,
-        serviceMetrics = profile.metrics(),
+        serviceMetrics = profile.metrics(simContext()),
         timestampMs = now,
     )
+
+    private fun missionActive(): Boolean {
+        val r = run ?: return false
+        return r.status == MissionStatus.EN_CURSO || r.status == MissionStatus.PAUSADA
+    }
+
+    private fun simContext() = SimContext(
+        state = opState,
+        missionActive = missionActive(),
+        moving = speed > 0.05f,
+        remainingMeters = remainingMeters(),
+    )
+
+    /** Metros que faltan recorrer hasta el último punto de la misión activa. */
+    private fun remainingMeters(): Float? {
+        val r = run ?: return null
+        if (!missionActive()) return null
+        val wps = r.template.waypoints
+        if (r.index >= wps.size) return 0f
+        var total = hypot(wps[r.index].x - x, wps[r.index].y - y)
+        for (i in r.index until wps.size - 1) {
+            total += hypot(wps[i + 1].x - wps[i].x, wps[i + 1].y - wps[i].y)
+        }
+        return total
+    }
 
     private fun updateBattery() {
         when (opState) {
@@ -246,7 +276,19 @@ class SimulatedRobotRepository(
             val canMoveAlone = opState == OperationalState.EN_MISION ||
                 opState == OperationalState.PAUSADO ||
                 opState == OperationalState.DISPONIBLE
-            if (canMoveAlone) {
+            if (!profile.autoReturnOnCriticalBattery && opState == OperationalState.EN_MISION) {
+                // Servicio que acompaña a una persona: el robot no se va solo y la deja.
+                opState = OperationalState.REQUIERE_AYUDA
+                speed = 0f
+                run?.let {
+                    it.status = MissionStatus.PAUSADA
+                    it.stage = "Detenido por batería crítica, junto a la persona"
+                }
+                addAlert(
+                    AlertType.BATERIA_BAJA, AlertSeverity.CRITICA,
+                    "Batería crítica ($pct %). El robot se detuvo en un lugar seguro sin dejar sola a la persona. Enviá a alguien a acompañarla.",
+                )
+            } else if (canMoveAlone && profile.autoReturnOnCriticalBattery) {
                 addAlert(
                     AlertType.BATERIA_BAJA, AlertSeverity.CRITICA,
                     "Batería crítica ($pct %). El robot inicia el regreso a punto seguro por su cuenta.",
@@ -281,13 +323,13 @@ class SimulatedRobotRepository(
         x = lerp(fromX, target.x, t)
         y = lerp(fromY, target.y, t)
         zone = target.zone
-        speed = 0.9f + random.nextFloat() * 0.3f
+        speed = (0.9f + random.nextFloat() * 0.3f) * profile.speedFactor()
         r.stage = "Yendo a ${target.name}"
 
         if (r.legTicks >= LEG_TICKS) {
             r.legTicks = 0
             r.index++
-            r.stage = "Inspeccionando ${target.name}"
+            r.stage = if (r.index >= wps.size) "Llegando a ${target.name}" else "En ${target.name}"
             log(EventCategory.MISION, "Punto alcanzado: ${target.name}", r.template.name)
             profile.onWaypointReached(target, random)?.let { raiseServiceEvent(it) }
         }
@@ -378,7 +420,11 @@ class SimulatedRobotRepository(
         val outcome = withTimeoutOrNull(COMMAND_TIMEOUT_MS) {
             delay(random.nextLong(400, 1200))          // latencia de ida
             while (isLinkDown()) delay(200)              // sin enlace la orden no llega
-            mutex.withLock { execute(type, target) }
+            mutex.withLock {
+                execute(type, target).also {
+                    if (it is CommandOutcome.Accepted) profile.onCommandAccepted(type)
+                }
+            }
         }
 
         val now = System.currentTimeMillis()
@@ -443,6 +489,8 @@ class SimulatedRobotRepository(
             CommandType.REANUDAR -> when {
                 r == null || r.status != MissionStatus.PAUSADA ->
                     CommandOutcome.Rejected("No hay misión pausada.")
+                battery < CommandRules.CRITICAL_BATTERY ->
+                    CommandOutcome.Rejected("Batería crítica: no se puede seguir la misión.")
                 opState == OperationalState.REQUIERE_AYUDA && hasUnackedCritical() ->
                     CommandOutcome.Rejected("Hay alertas críticas sin reconocer.")
                 opState != OperationalState.PAUSADO &&
@@ -450,7 +498,8 @@ class SimulatedRobotRepository(
                     opState != OperationalState.REQUIERE_AYUDA ->
                     CommandOutcome.Rejected("No se puede reanudar desde ${opState.label}.")
                 else -> {
-                    val note = if (opState == OperationalState.REQUIERE_AYUDA) "Ruta replanificada. " else ""
+                    val note = if (replanOnResume) "Ruta replanificada. " else ""
+                    replanOnResume = false
                     opState = OperationalState.EN_MISION
                     r.status = MissionStatus.EN_CURSO
                     log(EventCategory.MISION, "Misión reanudada", r.template.name)
@@ -536,6 +585,7 @@ class SimulatedRobotRepository(
         val next = r.template.waypoints.getOrNull(r.index)?.name ?: "el próximo punto"
         opState = OperationalState.REQUIERE_AYUDA
         speed = 0f
+        replanOnResume = true
         r.status = MissionStatus.PAUSADA
         r.stage = "Paso bloqueado camino a $next"
         addAlert(

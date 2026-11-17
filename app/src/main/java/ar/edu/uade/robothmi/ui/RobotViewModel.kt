@@ -37,6 +37,7 @@ import kotlinx.coroutines.launch
 data class RobotUiState(
     val robots: List<RobotInfo> = emptyList(),
     val serviceName: String = "",
+    val safePointName: String = "",
     val selectedRobot: RobotInfo? = null,
     val telemetry: Telemetry? = null,
     val isStale: Boolean = false,
@@ -87,6 +88,7 @@ class RobotViewModel(
         RobotUiState(
             robots = repository.robots,
             serviceName = repository.serviceName,
+            safePointName = repository.safePointName,
             selectedRobot = robot,
             telemetry = telemetry,
             isStale = stale,

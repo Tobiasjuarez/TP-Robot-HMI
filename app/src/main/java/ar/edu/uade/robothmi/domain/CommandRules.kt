@@ -67,6 +67,7 @@ object CommandRules {
 
             CommandType.REANUDAR -> when {
                 mission?.status != MissionStatus.PAUSADA -> no("No hay una misión pausada")
+                telemetry.batteryPct < CRITICAL_BATTERY -> no("Batería crítica: no se puede seguir la misión")
                 state == OperationalState.REQUIERE_AYUDA && hasUnackedCritical ->
                     no("Reconocé la alerta crítica antes de reanudar")
                 state != OperationalState.PAUSADO &&

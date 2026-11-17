@@ -5,7 +5,7 @@ import android.content.Context
 import ar.edu.uade.robothmi.data.RobotRepository
 import ar.edu.uade.robothmi.data.SimulationControls
 import ar.edu.uade.robothmi.data.local.AppDatabase
-import ar.edu.uade.robothmi.data.sim.InspeccionPlantaProfile
+import ar.edu.uade.robothmi.data.sim.GuiaUadeProfile
 import ar.edu.uade.robothmi.data.sim.SimulatedRobotRepository
 
 class RobotHmiApplication : Application() {
@@ -22,10 +22,10 @@ class RobotHmiApplication : Application() {
 class AppContainer(context: Context) {
     private val database = AppDatabase.build(context)
 
-    // Para cambiar de caso de uso, reemplazar InspeccionPlantaProfile por otro ServiceProfile.
+    // El caso de uso (guía en UADE) está en GuiaUadeProfile.
     private val simulated = SimulatedRobotRepository(
         dao = database.eventLogDao(),
-        profile = InspeccionPlantaProfile(),
+        profile = GuiaUadeProfile(),
     )
 
     val robotRepository: RobotRepository = simulated

@@ -84,7 +84,7 @@ fun PanelScreen(
         AlertDialog(
             onDismissRequest = { toConfirm = null },
             title = { Text("¿${type.label}?") },
-            text = { Text(confirmationText(type)) },
+            text = { Text(confirmationText(type, state.safePointName)) },
             confirmButton = {
                 TextButton(onClick = {
                     toConfirm = null
@@ -116,9 +116,9 @@ fun PanelScreen(
     }
 }
 
-private fun confirmationText(type: CommandType) = when (type) {
+private fun confirmationText(type: CommandType, safePoint: String) = when (type) {
     CommandType.CANCELAR -> "La misión termina y el robot queda quieto donde está. No se puede deshacer."
-    CommandType.VOLVER_A_BASE -> "Si hay una misión activa, se interrumpe y el robot vuelve a la base de carga."
+    CommandType.VOLVER_A_BASE -> "Si hay una misión activa, se interrumpe y el robot vuelve a $safePoint."
     else -> "Confirmá la orden."
 }
 
