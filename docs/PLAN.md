@@ -1,53 +1,105 @@
-# Plan de desarrollo — Guía UADE
+# Plan de desarrollo de Guía UADE
 
-Este documento cuenta cómo se construye la app, etapa por etapa, qué decisiones tomamos y qué falta. El README explica cómo correr la app; acá está el recorrido completo.
+Este documento cuenta cómo se construyó la app, etapa por etapa, qué decisiones tomamos y qué falta. Sirve para que cualquiera del equipo, al bajar el repo, sepa dónde estamos y cómo probar todo. El README explica cómo correr la app; acá está el recorrido completo.
 
-**Caso de uso:** un Unitree Go2 guía a personas ciegas o con baja visión dentro de una sede UADE, supervisado desde la app ([caso-de-uso.md](caso-de-uso.md)).
+**Caso de uso:** un Unitree Go2 simulado guía a personas ciegas o con baja visión por el Campus UADE Monserrat, y un operador lo supervisa desde la app ([`caso-de-uso.md`](caso-de-uso.md)).
 
-**Equipo:** _(completar)_
+**Equipo:** Tobías Juárez, _(completar)_.
 
 ## Estado
 
 | Etapa | Qué se hizo | PR | Estado |
 | --- | --- | --- | --- |
-| 0 | Repo base: arquitectura MVVM, robot simulado, Room, docs | — (commit inicial) | Hecha |
-| 1 | Configuración de Gradle como Rodando y caso de uso Guía UADE | #1 | En revisión |
-| 2 | Figma: componentes, 12 pantallas, flujo normal, flujo con falla y mapa de navegación | — | Hecha |
-| 3 | Aplicar el diseño del Figma a la app y plano real de la sede | — | Pendiente |
-| 4 | Evidencias de los 5 escenarios, video y diagrama de arquitectura | — | Pendiente |
+| 0 | Repo base: MVVM, robot simulado, Room, pantallas y documentación | — (commit inicial) | Hecha |
+| 1 | Gradle como Rodando y caso de uso Guía UADE sobre el plano del Campus Monserrat | #1 | Hecha |
+| 2 | Figma: componentes, 12 pantallas, flujo normal, flujo con falla y mapa de navegación | — (en Figma) | Hecha |
+| 3 | Documentación con el formato de Rodando | #2 | Hecha |
+| 4 | Evidencias de los cinco escenarios, APK en un release y video | — | En curso |
 
 ## Forma de trabajo
 
-- Una rama por etapa (`feature/...`), commits chicos con prefijo (`feat:`, `fix:`, `test:`, `docs:`, `chore:`).
+- Una rama por etapa (`feature/...`, `fix/...`, `docs/...`), commits chicos con prefijo (`feat:`, `fix:`, `test:`, `docs:`, `chore:`).
 - Cada rama termina en un pull request con el formato de `.github/pull_request_template.md`: qué cambia, punto de la consigna, cómo se probó y uso de IA.
 - Antes de mergear: compila, corre en el emulador y pasa `./gradlew test`.
 - Usamos Claude (Anthropic) como asistente para escribir código y documentos; cada PR lo declara y el equipo lo revisa y prueba.
 
 ## Arquitectura en una línea
 
-`Pantalla (Compose) → RobotViewModel (StateFlow de RobotUiState) → RobotRepository → robot simulado + Room`. La UI no conoce al simulador. Todo lo propio del caso de uso está en `GuiaUadeProfile`. Inyección de dependencias manual en `AppContainer`. Detalle en [arquitectura.md](arquitectura.md).
+`Pantalla (Compose) → RobotViewModel (StateFlow de RobotUiState) → RobotRepository → robot simulado + Room`. La UI no conoce al simulador; todo lo propio del caso de uso está en `GuiaUadeProfile`. Inyección de dependencias manual en `AppContainer`. Diagrama en [`arquitectura.md`](arquitectura.md).
 
 ## Qué se hizo en cada etapa
 
 ### Etapa 0 · Repo base
 
-- Modelos, `CommandRules` (habilitación de comandos, con tests), Repository, simulador con misiones, batería, alertas, latencia, rechazos y timeouts.
-- Pantallas: selección del robot, Panel, Alertas, Historial (Room) y Simulación.
+- Modelos de dominio y `CommandRules`, que decide qué orden se habilita en cada momento, con tests unitarios.
+- `RobotRepository` como interfaz y `SimulatedRobotRepository` como implementación: tick de 1 s, misiones por puntos, batería, alertas, órdenes con latencia, rechazos y vencimiento a los 6 s.
+- Pantallas: selección del robot, Panel (estado, telemetría, misión, control y últimas órdenes), Alertas, Historial (Room) y Simulación.
+- Documentación: arquitectura, contrato JSON, escenarios y decisiones.
 
 ### Etapa 1 · Gradle y Guía UADE (#1)
 
-- Ajustes de Gradle iguales a Rodando para que KSP (Room) funcione con AGP 9: `android.builtInKotlin=false` y `android.newDsl=false`. Las advertencias de "deprecated" al compilar son esperables.
-- No se versiona `gradle/gradle-daemon-jvm.properties` (pedía Java 25).
-- `GuiaUadeProfile`: viajes al Aula 225, UADE Labs y la parada de autos sobre el plano del Mapa UADE; asa, distancia, gente en el pasillo y avisos por voz.
-- Esquema del recorrido para la preentrega: `docs/recorrido-campus.svg`.
-- Con batería crítica el robot no deja sola a la persona.
+- Ajustes de Gradle iguales a Rodando para que KSP (Room) funcione con AGP 9: plugin `org.jetbrains.kotlin.android`, `android.builtInKotlin=false` y `android.newDsl=false`. Las advertencias de "deprecated" al compilar son esperables.
+- `GuiaUadeProfile` sobre el plano del Mapa UADE: misiones al Aula 225 (Lima 2, 2.º piso), a UADE Labs por el patio y a la parada de autos de Av. Independencia, desde el Punto de encuentro en la entrada de Lima.
+- Variables del servicio: asa, distancia al destino y gente en el pasillo, más el último aviso por voz.
+- Escenario propio: la persona suelta el asa y el robot se detiene, le habla y pide decisión.
+- Con batería crítica el robot no deja sola a la persona: se detiene y pide ayuda. No se puede reanudar con batería crítica.
+- Esquema del recorrido ([`recorrido-campus.svg`](recorrido-campus.svg)) y caso de uso con la justificación frente a un acompañante humano, con fuentes.
 
-## Pendientes
+### Etapa 2 · Figma
 
-- [x] Pasar el plano del Mapa UADE a `GuiaUadeProfile`
-- [ ] Verificar en la sede dónde están los ascensores y pasillos de Lima 1 y Lima 2
-- [ ] Investigar la versión del Go2 (sensores, autonomía, qué trae y qué no) y citar fuentes
-- [x] Figma navegable: flujo normal y flujo con falla ([link](https://www.figma.com/design/4jqfkUGmYIYXSamN4MWbRV))
-- [ ] Aplicar colores y componentes del Figma en `ui/theme` y `ui/components`
-- [ ] Vista del recorrido (opcional: Canvas con los puntos y la posición del robot)
-- [ ] Capturas/video de los 5 escenarios
+- [Archivo de Figma](https://www.figma.com/design/4jqfkUGmYIYXSamN4MWbRV) con tres páginas: componentes con estados normal, deshabilitado, advertencia y error; prototipo con 12 pantallas y cuatro puntos de inicio (flujo normal, asa suelta, sin conexión, batería crítica); mapa de navegación.
+
+### Etapa 3 · Documentación (#2)
+
+- README, `docs/README.md` y este plan con el mismo formato que Rodando. Carpeta `evidencias/` con la lista de capturas.
+
+### Etapa 4 · Entrega final (en curso)
+
+- [ ] Capturas de los cinco escenarios en [`evidencias/`](evidencias/)
+- [ ] APK en un release de GitHub
+- [ ] Video de demostración
+- [ ] Informe final con las evidencias, exportado a PDF
+
+## Decisiones importantes
+
+| Decisión | Por qué |
+| --- | --- |
+| Repository como interfaz y robot simulado detrás | Desacoplar la UI del robot (lo pide la consigna) y poder cambiar a un robot real sin tocar la UI |
+| Reglas de habilitación en `CommandRules` (Kotlin puro) | Una sola fuente de verdad para la UI, testeable sin Android |
+| El robot simulado valida de nuevo cada orden | La app puede tener datos viejos: el robot es la fuente de verdad |
+| Datos viejos a los 3 s, órdenes sin respuesta a los 6 s | Con 1 telemetría por segundo, 3 s sin datos indica un problema real |
+| Detención sin confirmación; cancelar y volver con confirmación | Prevenir órdenes accidentales sin demorar la de seguridad |
+| Reanudar exige reconocer la alerta crítica | Obliga a leer qué pasó antes de decidir |
+| Con batería crítica el robot no vuelve solo si está guiando | Un servicio de guía no puede dejar sola a alguien que no ve |
+| Go2 y no G1 | Forma y altura de perro guía, se le monta un asa, más autonomía |
+| Plano del Mapa UADE con ascensores aproximados | Edificios y entradas reales; los interiores hay que verificarlos en la sede |
+
+El registro completo, con las limitaciones, está en [`decisiones.md`](decisiones.md).
+
+## Cómo probar todo
+
+1. Run desde Android Studio → **Conectar**.
+2. Misión normal: **Iniciar** "Guiar al Aula 225" → confirmar → ver la orden Pendiente → Confirmada, el progreso y los avisos por voz → esperar la llegada → pestaña Historial.
+3. Batería baja: con una misión en curso, Simulación → **Batería 18 %** (advertencia) y después **Batería 8 %** (se detiene junto a la persona).
+4. Desconexión: Simulación → **Cortar conexión 15 s** → en el Panel, banner de datos viejos y Pausar deshabilitado; Solicitar detención queda Sin respuesta.
+5. Incidente: Simulación → **Generar obstáculo** → reconocer la alerta → Reanudar.
+6. Escenario propio: Simulación → **Disparar escenario propio** (la persona suelta el asa) → reconocer → Reanudar.
+7. Rechazo: Simulación → **Rechazar próxima orden** → mandar cualquier orden.
+8. Tests: `./gradlew test`.
+
+Detalle de cada escenario y qué capturar: [`escenarios.md`](escenarios.md).
+
+## Problemas conocidos y soluciones
+
+| Problema | Solución |
+| --- | --- |
+| "Cannot find a Java installation … languageVersion=25" al abrir el proyecto | *Settings → Build Tools → Gradle → Gradle JDK* = **jbr-25** y borrar `gradle/gradle-daemon-jvm.properties` (lo crea Android Studio) |
+| "Gradle 9.5.0 is not the latest minor version" | Ignorarlo: usamos la misma versión que Rodando |
+| No se puede iniciar una misión | Batería por debajo de 25 %: "Volver a punto seguro" y esperar a que cargue |
+| Reanudar sigue deshabilitado | Hay una alerta crítica sin reconocer (pestaña Alertas) o la batería está por debajo de 10 % |
+
+## Pendientes del equipo (fuera del código)
+
+- Completar los integrantes en el README, el plan y el informe.
+- Verificar en la sede dónde están los ascensores de Lima 2 y el paso interno de Lima 1 a Lima 2.
+- Investigar la versión del Go2 elegida y citar sus especificaciones oficiales.
