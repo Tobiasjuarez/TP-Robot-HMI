@@ -67,6 +67,10 @@ Diagrama y estados en [`docs/arquitectura.md`](docs/arquitectura.md); contrato d
 
 ## Cómo ejecutar
 
+**Sin compilar:** descargar `GuiaUADE.apk` del [último release](https://github.com/Tobiasjuarez/TP-Robot-HMI/releases/latest) y arrastrarlo al emulador (o abrirlo en un Android y permitir instalar apps de origen desconocido). Lo compila GitHub Actions.
+
+**Desde el código:**
+
 1. Abrir la carpeta del proyecto en Android Studio y esperar el *Gradle Sync*.
 2. Elegir un emulador (Android 8.0 / API 26 o superior) y tocar **Run**.
 3. En la app: **Conectar** → en el Panel, **Iniciar** "Guiar al Aula 225" → confirmar.
