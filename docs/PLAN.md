@@ -12,7 +12,7 @@ Este documento cuenta cómo se construye la app, etapa por etapa, qué decisione
 | --- | --- | --- | --- |
 | 0 | Repo base: arquitectura MVVM, robot simulado, Room, docs | — (commit inicial) | Hecha |
 | 1 | Configuración de Gradle como Rodando y caso de uso Guía UADE | #1 | En revisión |
-| 2 | Preentrega: documento, esquema del recorrido, Figma (flujo normal y falla) | — | Pendiente |
+| 2 | Figma: componentes, 12 pantallas, flujo normal, flujo con falla y mapa de navegación | — | Hecha |
 | 3 | Aplicar el diseño del Figma a la app y plano real de la sede | — | Pendiente |
 | 4 | Evidencias de los 5 escenarios, video y diagrama de arquitectura | — | Pendiente |
 
@@ -47,7 +47,7 @@ Este documento cuenta cómo se construye la app, etapa por etapa, qué decisione
 - [x] Pasar el plano del Mapa UADE a `GuiaUadeProfile`
 - [ ] Verificar en la sede dónde están los ascensores y pasillos de Lima 1 y Lima 2
 - [ ] Investigar la versión del Go2 (sensores, autonomía, qué trae y qué no) y citar fuentes
-- [ ] Figma navegable: flujo normal y flujo con falla
+- [x] Figma navegable: flujo normal y flujo con falla ([link](https://www.figma.com/design/4jqfkUGmYIYXSamN4MWbRV))
 - [ ] Aplicar colores y componentes del Figma en `ui/theme` y `ui/components`
 - [ ] Vista del recorrido (opcional: Canvas con los puntos y la posición del robot)
 - [ ] Capturas/video de los 5 escenarios

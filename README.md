@@ -5,6 +5,7 @@ Trabajo Práctico grupal de Desarrollo de Aplicaciones I (Interfaz HMI/HRI para 
 
 - Caso de uso, actores, justificación y riesgos: [`docs/caso-de-uso.md`](docs/caso-de-uso.md)
 - Plan de desarrollo y forma de trabajo: [`docs/PLAN.md`](docs/PLAN.md)
+- Diseño en Figma (prototipo navegable, flujo normal y con falla, mapa de navegación): https://www.figma.com/design/4jqfkUGmYIYXSamN4MWbRV
 
 ## Cómo correrlo
 
