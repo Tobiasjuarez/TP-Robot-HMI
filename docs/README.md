@@ -1,5 +1,6 @@
 # Documentación
 
+- [`entrega-final.pdf`](entrega-final.pdf) — Informe de la entrega final: caso de uso, interacción, Figma, APK y simulación, pruebas, riesgos, decisiones, repositorio e integrantes.
 - [`PLAN.md`](PLAN.md) — Plan de desarrollo: etapas, PRs, decisiones, cómo probar todo y pendientes.
 - [`caso-de-uso.md`](caso-de-uso.md) — Problema, entorno, actores, misión, por qué un robot y por qué Go2, capacidades, telemetría, comandos y riesgos.
 - [`recorrido-campus.svg`](recorrido-campus.svg) — Esquema del Campus UADE Monserrat con las tres misiones (dibujo propio basado en el Mapa UADE).
