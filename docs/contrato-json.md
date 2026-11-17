@@ -15,18 +15,19 @@
   "battery": { "pct": 64, "charging": false },
   "state": "EN_MISION",
   "mission": {
-    "missionId": "ronda-completa",
+    "missionId": "aula-305",
     "status": "EN_CURSO",
     "currentWaypoint": 3,
-    "totalWaypoints": 6,
-    "stage": "Yendo a Tablero eléctrico B"
+    "totalWaypoints": 5,
+    "stage": "Yendo a Pasillo norte"
   },
-  "position": { "x": 27.4, "y": 14.0, "zone": "Sala de tableros" },
-  "motion": { "speedMps": 1.1 },
+  "position": { "x": 20.1, "y": 9.0, "zone": "Piso 3 · Pasillo norte" },
+  "motion": { "speedMps": 0.6 },
   "serviceMetrics": [
-    { "id": "puntos", "label": "Puntos inspeccionados", "value": "3/6" },
-    { "id": "temp_max", "label": "Temp. máx. detectada", "value": "47", "unit": "°C", "level": "NORMAL" },
-    { "id": "fuera_rango", "label": "Lecturas fuera de rango", "value": "1", "level": "ADVERTENCIA" }
+    { "id": "asa", "label": "Asa", "value": "Sujetada", "level": "NORMAL" },
+    { "id": "distancia", "label": "Distancia al destino", "value": "9", "unit": "m", "level": "NORMAL" },
+    { "id": "gente", "label": "Gente en el pasillo", "value": "Mucha", "level": "ADVERTENCIA" },
+    { "id": "voz", "label": "Último aviso por voz", "value": "Estamos en el piso 3. Salimos del ascensor hacia la derecha." }
   ]
 }
 ```
@@ -68,7 +69,7 @@ Rechazado:
   "type": "command_ack",
   "commandId": "e5f6a7b8",
   "result": "RECHAZADA",
-  "message": "Batería insuficiente para la misión (18 %).",
+  "message": "Batería crítica: no se puede seguir la misión.",
   "respondedAt": "2026-11-20T21:15:10.400Z"
 }
 ```
@@ -84,7 +85,7 @@ Rechazado:
   "robotId": "robot-01",
   "alertType": "OBSTACULO",
   "severity": "CRITICA",
-  "message": "Paso bloqueado camino a Válvula V-12. El robot está quieto y espera tu decisión.",
+  "message": "Paso bloqueado camino a Pasillo norte. El robot está quieto y espera tu decisión.",
   "createdAt": "2026-11-20T21:16:42.000Z"
 }
 ```
@@ -95,9 +96,9 @@ Rechazado:
 {
   "type": "mission_event",
   "robotId": "robot-01",
-  "missionId": "ronda-completa",
+  "missionId": "aula-305",
   "event": "WAYPOINT_REACHED",
-  "detail": "Tablero eléctrico A",
+  "detail": "Ascensor A (planta baja)",
   "at": "2026-11-20T21:13:58.000Z"
 }
 ```

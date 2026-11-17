@@ -2,46 +2,48 @@
 
 Todos se reproducen desde la app, con la pestaña **Simulación**. Para cada uno, guardar capturas o un clip como evidencia.
 
-## 1. Misión normal
+## 1. Misión normal: guiar a Aula 305
 
-1. Conectar al robot → Panel → **Iniciar** "Solo tableros eléctricos" (es la más corta) → confirmar.
+1. Conectar al robot → Panel → **Iniciar** "Guiar a Aula 305" → confirmar.
 2. Ver la orden **Pendiente → Confirmada** en "Últimas órdenes".
-3. Ver el progreso (punto X de N, barra, etapa) y las variables del servicio actualizándose.
-4. Esperar a que termine: estado **Disponible** y "Misión completada" en Historial.
+3. Ver el progreso (punto X de N, piso y zona), la distancia al destino que baja, el asa "Sujetada" y los avisos por voz en cada punto (pasillo, ascensor, piso 3).
+4. Al llegar: "Llegamos al Aula 305", estado **Disponible** y "Misión completada" en Historial.
 
-**Evidencia:** inicio, progreso a mitad, finalización y el Historial.
+**Evidencia:** inicio, el robot en el ascensor, la llegada y el Historial.
 
 ## 2. Batería baja
 
-1. Con una misión en curso → Simulación → **Batería 18 %**.
-2. Aparece la alerta de advertencia, el Panel muestra "Batería baja: considerá volver a punto seguro" y "Volver a punto seguro" queda marcado como recomendado.
-3. Ordenar **Volver a punto seguro** (pide confirmación) → el robot vuelve y empieza a cargar.
-4. Variante: **Batería 8 %** → el robot inicia solo el regreso (si no estaba detenido por el operador).
+1. Con un viaje en curso → Simulación → **Batería 18 %**.
+2. Aparece la advertencia y el Panel recomienda volver al Punto de encuentro.
+3. Variante crítica: **Batería 8 %** → el robot **se detiene junto a la persona** (no se vuelve solo), alerta crítica "Enviá a alguien a acompañarla". **Reanudar** queda deshabilitado; **Volver a punto seguro** sigue disponible (vuelven juntos).
 
-**Evidencia:** alerta, acción recomendada, llegada a base cargando.
+**Evidencia:** advertencia, robot detenido con la persona, acción disponible.
 
 ## 3. Desconexión
 
-1. Con una misión en curso → Simulación → **Cortar conexión 15 s**.
-2. A los 3 s aparece el banner "Sin datos nuevos hace N s", las tarjetas se atenúan y el indicador pasa a "Sin datos".
-3. Probar **Pausar**: está deshabilitado ("Sin conexión"). Probar **Solicitar detención**: se envía y queda **Pendiente**; si pasan 6 s → **Sin respuesta**.
-4. Al volver la conexión: la telemetría se actualiza, llega la alerta de desconexión y el Historial registra el corte.
+1. Con un viaje en curso → Simulación → **Cortar conexión 15 s** (por ejemplo, dentro del ascensor).
+2. A los 3 s aparece "Sin datos nuevos hace N s", las tarjetas se atenúan y el indicador pasa a "Sin datos".
+3. **Pausar** queda deshabilitado; **Solicitar detención** se puede enviar y queda **Pendiente** → **Sin respuesta** a los 6 s.
+4. Al volver la conexión: telemetría al día, alerta de desconexión y registro en Historial.
 
 **Evidencia:** banner de datos viejos, orden sin respuesta, recuperación.
 
-## 4. Incidente (obstáculo)
+## 4. Incidente: paso bloqueado
 
-1. Con una misión en curso → Simulación → **Generar obstáculo**.
-2. Estado **Requiere intervención** y alerta crítica "Paso bloqueado...".
-3. **Reanudar** está deshabilitado hasta **reconocer** la alerta (pestaña Alertas).
-4. El operador decide: **Reanudar** (el robot replanifica), **Volver a punto seguro** o **Cancelar**.
+1. Con un viaje en curso → Simulación → **Generar obstáculo** (por ejemplo, pasillo bloqueado en el cambio de turno).
+2. Estado **Requiere intervención** y alerta crítica "Paso bloqueado…".
+3. **Reanudar** está deshabilitado hasta **reconocer** la alerta.
+4. El operador decide: **Reanudar** (el robot replanifica), **Volver al Punto de encuentro** o **Cancelar**.
 
 **Evidencia:** alerta, botón bloqueado con su motivo, decisión y resultado.
 
-## 5. Escenario propio
+## 5. Escenario propio: la persona suelta el asa
 
-Depende del caso de uso (`ServiceProfile.customScenario()`). En el ejemplo de inspección:
-**Temperatura crítica en un tablero** → alerta crítica, el robot se frena y el operador decide si sigue la ronda.
+1. Con un viaje en curso → Simulación → **Disparar escenario propio**.
+2. El asa pasa a **Suelta** (en rojo), el robot se detiene y dice "Soltaste el asa. Me quedo quieto acá…".
+3. El operador reconoce la alerta y decide: **Reanudar** cuando la persona vuelve a tomarla (el asa vuelve a "Sujetada"), mandar a alguien o **Cancelar**.
+
+**Evidencia:** asa suelta, aviso por voz, decisión del operador.
 
 ## Extra: rechazo
 
