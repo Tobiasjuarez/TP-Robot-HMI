@@ -15,19 +15,19 @@
   "battery": { "pct": 64, "charging": false },
   "state": "EN_MISION",
   "mission": {
-    "missionId": "aula-305",
+    "missionId": "aula-225",
     "status": "EN_CURSO",
-    "currentWaypoint": 3,
+    "currentWaypoint": 2,
     "totalWaypoints": 5,
-    "stage": "Yendo a Pasillo norte"
+    "stage": "Yendo a Ascensores de Lima 2"
   },
-  "position": { "x": 20.1, "y": 9.0, "zone": "Piso 3 · Pasillo norte" },
+  "position": { "x": 53.5, "y": 28.5, "zone": "Lima 2 · Planta baja" },
   "motion": { "speedMps": 0.6 },
   "serviceMetrics": [
     { "id": "asa", "label": "Asa", "value": "Sujetada", "level": "NORMAL" },
-    { "id": "distancia", "label": "Distancia al destino", "value": "9", "unit": "m", "level": "NORMAL" },
+    { "id": "distancia", "label": "Distancia al destino", "value": "15", "unit": "m", "level": "NORMAL" },
     { "id": "gente", "label": "Gente en el pasillo", "value": "Mucha", "level": "ADVERTENCIA" },
-    { "id": "voz", "label": "Último aviso por voz", "value": "Estamos en el piso 3. Salimos del ascensor hacia la derecha." }
+    { "id": "voz", "label": "Último aviso por voz", "value": "Giramos a la izquierda para pasar a Lima 2." }
   ]
 }
 ```
@@ -85,7 +85,7 @@ Rechazado:
   "robotId": "robot-01",
   "alertType": "OBSTACULO",
   "severity": "CRITICA",
-  "message": "Paso bloqueado camino a Pasillo norte. El robot está quieto y espera tu decisión.",
+  "message": "Paso bloqueado camino a Ascensores de Lima 2. El robot está quieto y espera tu decisión.",
   "createdAt": "2026-11-20T21:16:42.000Z"
 }
 ```
@@ -96,9 +96,9 @@ Rechazado:
 {
   "type": "mission_event",
   "robotId": "robot-01",
-  "missionId": "aula-305",
+  "missionId": "aula-225",
   "event": "WAYPOINT_REACHED",
-  "detail": "Ascensor A (planta baja)",
+  "detail": "Hall de Lima 1",
   "at": "2026-11-20T21:13:58.000Z"
 }
 ```

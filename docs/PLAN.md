@@ -38,12 +38,14 @@ Este documento cuenta cómo se construye la app, etapa por etapa, qué decisione
 
 - Ajustes de Gradle iguales a Rodando para que KSP (Room) funcione con AGP 9: `android.builtInKotlin=false` y `android.newDsl=false`. Las advertencias de "deprecated" al compilar son esperables.
 - No se versiona `gradle/gradle-daemon-jvm.properties` (pedía Java 25).
-- `GuiaUadeProfile`: viajes a Aula 305, Biblioteca y Bedelía; asa, distancia, gente en el pasillo y avisos por voz.
+- `GuiaUadeProfile`: viajes al Aula 225, UADE Labs y la parada de autos sobre el plano del Mapa UADE; asa, distancia, gente en el pasillo y avisos por voz.
+- Esquema del recorrido para la preentrega: `docs/recorrido-campus.svg`.
 - Con batería crítica el robot no deja sola a la persona.
 
 ## Pendientes
 
-- [ ] Elegir la sede y pasar el plano real a `GuiaUadeProfile`
+- [x] Pasar el plano del Mapa UADE a `GuiaUadeProfile`
+- [ ] Verificar en la sede dónde están los ascensores y pasillos de Lima 1 y Lima 2
 - [ ] Investigar la versión del Go2 (sensores, autonomía, qué trae y qué no) y citar fuentes
 - [ ] Figma navegable: flujo normal y flujo con falla
 - [ ] Aplicar colores y componentes del Figma en `ui/theme` y `ui/components`

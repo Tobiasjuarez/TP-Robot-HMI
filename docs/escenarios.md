@@ -2,12 +2,12 @@
 
 Todos se reproducen desde la app, con la pestaña **Simulación**. Para cada uno, guardar capturas o un clip como evidencia.
 
-## 1. Misión normal: guiar a Aula 305
+## 1. Misión normal: guiar al Aula 225
 
-1. Conectar al robot → Panel → **Iniciar** "Guiar a Aula 305" → confirmar.
+1. Conectar al robot → Panel → **Iniciar** "Guiar al Aula 225" → confirmar.
 2. Ver la orden **Pendiente → Confirmada** en "Últimas órdenes".
-3. Ver el progreso (punto X de N, piso y zona), la distancia al destino que baja, el asa "Sujetada" y los avisos por voz en cada punto (pasillo, ascensor, piso 3).
-4. Al llegar: "Llegamos al Aula 305", estado **Disponible** y "Misión completada" en Historial.
+3. Ver el progreso (punto X de N, edificio y piso), la distancia al destino que baja, el asa "Sujetada" y los avisos por voz en cada punto (Hall de Lima 1, paso a Lima 2, ascensores, 2.º piso).
+4. Al llegar: "Llegamos al Aula 225", estado **Disponible** y "Misión completada" en Historial.
 
 **Evidencia:** inicio, el robot en el ascensor, la llegada y el Historial.
 
@@ -30,7 +30,7 @@ Todos se reproducen desde la app, con la pestaña **Simulación**. Para cada uno
 
 ## 4. Incidente: paso bloqueado
 
-1. Con un viaje en curso → Simulación → **Generar obstáculo** (por ejemplo, pasillo bloqueado en el cambio de turno).
+1. Con un viaje en curso → Simulación → **Generar obstáculo** (por ejemplo, el paso de Lima 1 a Lima 2 lleno de gente en el cambio de turno).
 2. Estado **Requiere intervención** y alerta crítica "Paso bloqueado…".
 3. **Reanudar** está deshabilitado hasta **reconocer** la alerta.
 4. El operador decide: **Reanudar** (el robot replanifica), **Volver al Punto de encuentro** o **Cancelar**.

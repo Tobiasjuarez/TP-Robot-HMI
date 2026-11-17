@@ -30,7 +30,7 @@
 - El contrato JSON es una propuesta del grupo, **no** el protocolo oficial de Unitree.
 - El asa con sensor y la voz bidireccional requieren equipamiento adicional sobre el Go2.
 - Un Go2 no puede usar los botones del ascensor: requiere integración con el edificio o personal.
-- El plano de la sede es ilustrativo; los avisos por voz son textos, no audio.
+- El plano sale del Mapa UADE, pero la ubicación de ascensores y pasillos interiores es aproximada; los avisos por voz son textos, no audio.
 - Cualquier prueba con personas reales requeriría entorno controlado y supervisión permanente.
 
 _(Completar con las decisiones del grupo.)_

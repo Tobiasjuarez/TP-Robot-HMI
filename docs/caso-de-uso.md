@@ -10,7 +10,7 @@ Una persona ciega o con baja visión que llega a una sede UADE (alumno nuevo, in
 
 ## Servicio propuesto
 
-Un **Unitree Go2** con un **asa** guía a la persona desde el **Punto de encuentro** (Hall de entrada) hasta el destino, avisándole por voz giros, puertas y ascensores. Un **operador** supervisa los viajes desde la app y decide qué hacer ante incidentes.
+Un **Unitree Go2** con un **asa** guía a la persona desde el **Punto de encuentro** (entrada peatonal de Lima) hasta el destino, avisándole por voz giros, puertas y ascensores. Un **operador** supervisa los viajes desde la app y decide qué hacer ante incidentes.
 
 ## Actores
 
@@ -21,13 +21,21 @@ Un **Unitree Go2** con un **asa** guía a la persona desde el **Punto de encuent
 | Alumnos y personal en el pasillo | Comparten el espacio (HRI) | Entender qué hace el robot y dejar paso | Pedido de paso por voz, movimiento predecible |
 | Personal de apoyo | Acude cuando el operador lo pide | Saber dónde está la persona | Ubicación y aviso del operador |
 
-## Misión (recorrido ilustrativo)
+## Entorno y recorrido: Campus UADE Monserrat
+
+El campus ocupa la manzana entre **Lima, Chile, Salta y Av. Independencia**: edificios Lima 1, 2 y 3 sobre Lima; Chile 1, 2 y 3 sobre Chile; Salta; Independencia 1 y 2, Residencia y UADE Labs sobre Av. Independencia; y un **patio central**. Hay entrada peatonal por Lima, entradas peatonales y accesibles por Av. Independencia y una parada de autos sobre Av. Independencia (fuente: Mapa UADE, la app de la universidad).
+
+![Esquema del recorrido](recorrido-campus.svg)
+
+Misión principal, siguiendo la ruta que marca el propio Mapa UADE (entrar por Lima, pasar por Lima 1 y girar a Lima 2):
 
 ```
-Punto de encuentro (Hall, PB) → Pasillo central → Ascensor A → Piso 3 → Pasillo norte → Aula 305
+Punto de encuentro (entrada Lima) → Hall de Lima 1 → Paso a Lima 2 → Ascensores de Lima 2 → 2.º piso → Aula 225
 ```
 
-Otras misiones: Biblioteca (piso 1) y Bedelía (planta baja). **El plano de la app es ilustrativo**: reemplazarlo por el de la sede que elijamos.
+Otras misiones: **UADE Labs** (cruzando el patio central, al aire libre) y la **parada de autos** de Av. Independencia (para quien se va en taxi, remís o con un familiar).
+
+Edificios y entradas salen del mapa oficial. **La ubicación de ascensores y pasillos interiores es aproximada**: hay que verificarla recorriendo la sede.
 
 ## ¿Por qué un robot y por qué Go2?
 
@@ -58,9 +66,9 @@ El Go2 se elige por **forma y altura parecidas a las de un perro guía**, por mo
 
 ## La sede
 
-- Campus UADE Monserrat: Lima 775 (torre Lima 2) y Lima 757 ([fact sheet UADE](https://www.uade.edu.ar/media/ibnhqypk/fact-sheet-esp-2023.pdf)), más el edificio principal sobre la Av. 9 de Julio.
-- No encontramos un plano interior público con aulas. Lo más cercano son las plantas del edificio principal publicadas por los arquitectos (subsuelos, planta baja y niveles 1, 2, 8, 9 y 10) en [ArchDaily](https://www.archdaily.com/1010800/campus-uade-main-building-oficina-urbana-converti-plus-de-marco-arquitectos).
-- **Propuesta:** armar el esquema del recorrido recorriendo la sede (Hall → ascensores → un aula real que cursemos), usando esas plantas como base. Hasta entonces, el plano de la app es ilustrativo.
+- Campus UADE Monserrat: Lima 775 (torre Lima 2) y Lima 757 ([fact sheet UADE](https://www.uade.edu.ar/media/ibnhqypk/fact-sheet-esp-2023.pdf)).
+- El plano de la app sale del **Mapa UADE** (app de la universidad), que muestra la manzana, los edificios y cómo llegar a cada aula. El aula 225, por ejemplo, figura como "Lima 2, 2.º piso".
+- El esquema `recorrido-campus.svg` es un dibujo propio con las mismas coordenadas que usa la app.
 
 ## Capacidades: lo que trae y lo que requiere
 
@@ -89,7 +97,7 @@ Extra de HRI: **último aviso por voz**, para que el operador sepa qué escuchó
 
 | Comando | Qué significa acá |
 | --- | --- |
-| Iniciar misión | "Guiar a Aula 305" |
+| Iniciar misión | "Guiar al Aula 225" |
 | Pausar / Reanudar | La persona quiere frenar un momento / seguir |
 | Cancelar | Se suspende el viaje; el robot queda con la persona y se avisa al personal |
 | Volver a punto seguro | Volver **juntos** al Punto de encuentro |

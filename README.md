@@ -1,6 +1,6 @@
 # Guía UADE — TP DAI (UADE)
 
-App Android para operar y supervisar un **Unitree Go2 simulado que guía a personas ciegas o con baja visión** dentro de una sede UADE.
+App Android para operar y supervisar un **Unitree Go2 simulado que guía a personas ciegas o con baja visión** dentro del Campus UADE Monserrat.
 Trabajo Práctico grupal de Desarrollo de Aplicaciones I (Interfaz HMI/HRI para robots de servicio).
 
 - Caso de uso, actores, justificación y riesgos: [`docs/caso-de-uso.md`](docs/caso-de-uso.md)
@@ -51,8 +51,8 @@ Más detalle en [`docs/arquitectura.md`](docs/arquitectura.md).
 
 Todo lo específico del servicio está en `data/sim/GuiaUadeProfile.kt`:
 
-- `base`: el **Punto de encuentro** (Hall de entrada), adonde vuelve el robot
-- `missions`: viajes a Aula 305, Biblioteca y Bedelía (**plano ilustrativo**: reemplazar por el real)
+- `base`: el **Punto de encuentro** (entrada peatonal de Lima), adonde vuelve el robot
+- `missions`: viajes al Aula 225 (Lima 2, 2.º piso), a UADE Labs y a la parada de autos de Av. Independencia, sobre el plano del Mapa UADE ([esquema](docs/recorrido-campus.svg))
 - `metrics()`: **asa**, **distancia al destino** y **gente en el pasillo**, más el último aviso por voz
 - `customScenario()`: **la persona suelta el asa** (escenario 5)
 - `autoReturnOnCriticalBattery = false`: con batería crítica el robot no deja sola a la persona
