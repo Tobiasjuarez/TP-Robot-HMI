@@ -9,8 +9,8 @@ Trabajo Práctico grupal — Desarrollo de Aplicaciones I (UADE), 2.º cuatrimes
 | Integrante | Rol principal |
 | --- | --- |
 | Tobías Juárez | Arquitectura, simulador e integración |
-| _(completar)_ | _(completar)_ |
-| _(completar)_ | _(completar)_ |
+| Matías Fernández | Prototipo en Figma y UI |
+| Lucas Casas | Escenarios, evidencias y testing |
 
 ## Qué pide la consigna y cómo lo cubrimos
 
