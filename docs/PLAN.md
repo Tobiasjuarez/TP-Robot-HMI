@@ -4,7 +4,7 @@ Este documento cuenta cómo se construyó la app, etapa por etapa, qué decision
 
 **Caso de uso:** un Unitree Go2 simulado guía a personas ciegas o con baja visión por el Campus UADE Monserrat, y un operador lo supervisa desde la app ([`caso-de-uso.md`](caso-de-uso.md)).
 
-**Equipo:** Tobías Juárez, _(completar)_.
+**Equipo:** Tobías Juárez, Matías Fernández y Lucas Casas.
 
 ## Estado
 
@@ -100,6 +100,5 @@ Detalle de cada escenario y qué capturar: [`escenarios.md`](escenarios.md).
 
 ## Pendientes del equipo (fuera del código)
 
-- Completar los integrantes en el README, el plan y el informe.
 - Verificar en la sede dónde están los ascensores de Lima 2 y el paso interno de Lima 1 a Lima 2.
 - Investigar la versión del Go2 elegida y citar sus especificaciones oficiales.
