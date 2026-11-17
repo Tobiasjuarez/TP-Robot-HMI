@@ -12,72 +12,73 @@ import kotlin.math.roundToInt
 import kotlin.random.Random
 
 /**
- * Caso de uso: Go2 que guía a personas ciegas o con baja visión dentro de una sede UADE.
+ * Caso de uso: Go2 que guía a personas ciegas o con baja visión dentro del Campus UADE Monserrat.
  * La persona va tomada de un asa; el robot le avisa por voz giros, ascensores y llegadas.
  * Un operador supervisa los viajes desde el Punto de encuentro.
  *
- * El plano es ILUSTRATIVO (coordenadas en metros, pisos en la zona).
- * Reemplazar por el plano real de la sede cuando lo tengamos.
+ * Plano: la manzana Lima / Chile / Salta / Av. Independencia, con los edificios del
+ * "Mapa UADE" (Lima 1-3, Chile 1-3, Salta, Independencia 1-2, UADE Labs) y el patio central.
+ * Coordenadas en metros: x de oeste (Av. Independencia) a este (Chile), y de sur (Lima) a norte (Salta).
+ * La ubicación de edificios y entradas sale del mapa oficial; la de ascensores y pasillos
+ * interiores es APROXIMADA (verificar en la sede).
  */
 class GuiaUadeProfile : ServiceProfile {
-    override val serviceName = "Guía para personas con baja visión · UADE"
+    override val serviceName = "Guía para personas con baja visión · Campus UADE Monserrat"
     override val platform = RobotPlatform.GO2
     override val robotDescription = "Guía con asa y voz (simulado)"
     override val base = Waypoint(
         name = "Punto de encuentro",
-        zone = "Planta baja · Hall de entrada",
-        x = 2f, y = 2f,
+        zone = "Entrada peatonal Lima",
+        x = 49f, y = 12f,
     )
     override val customScenarioLabel = "La persona soltó el asa"
 
     /** Nunca deja sola a la persona: con batería crítica se detiene y pide ayuda. */
     override val autoReturnOnCriticalBattery = false
 
-    // ---------- Puntos del plano (ilustrativo) ----------
-    private val pasilloPb = Waypoint(
-        "Pasillo central", "Planta baja · Pasillo central", 10f, 2f,
-        announcement = "Seguimos derecho por el pasillo central.",
+    // ---------- Puntos del campus ----------
+    private val hallLima1 = Waypoint(
+        "Hall de Lima 1", "Lima 1 · Planta baja", 66f, 22f,
+        announcement = "Entramos a Lima 1. Seguimos derecho.",
     )
-    private val ascensorPb = Waypoint(
-        "Ascensor A (planta baja)", "Planta baja · Ascensores", 16f, 6f,
-        announcement = "Llegamos al ascensor. Esperamos a que abra la puerta.",
-    )
-    private fun salidaAscensor(piso: Int) = Waypoint(
-        "Salida del ascensor, piso $piso", "Piso $piso · Ascensores", 16f, 8f,
-        announcement = "Estamos en el piso $piso. Salimos del ascensor hacia la derecha.",
+    private val patio = Waypoint(
+        "Patio central", "Patio central", 62f, 58f,
+        announcement = "Estamos en el patio central, al aire libre. El piso es parejo.",
     )
 
     override val missions = listOf(
         MissionTemplate(
-            id = "aula-305",
-            name = "Guiar a Aula 305",
-            description = "Hall → ascensor → piso 3",
+            id = "aula-225",
+            name = "Guiar al Aula 225",
+            description = "Lima 2 · 2.º piso (entrada por Lima, pasando por Lima 1)",
             waypoints = listOf(
-                pasilloPb,
-                ascensorPb,
-                salidaAscensor(3),
-                Waypoint("Pasillo norte", "Piso 3 · Pasillo norte", 24f, 10f, "Giramos a la izquierda. Puerta de vidrio a la derecha."),
-                Waypoint("Aula 305", "Piso 3 · Aula 305", 28f, 14f, "Llegamos al Aula 305. La puerta está frente a vos."),
+                hallLima1,
+                Waypoint("Paso a Lima 2", "Lima 1 → Lima 2 · Planta baja", 58f, 27f, "Giramos a la izquierda para pasar a Lima 2."),
+                Waypoint("Ascensores de Lima 2", "Lima 2 · Planta baja", 49f, 30f, "Llegamos a los ascensores. Esperamos a que abra la puerta."),
+                Waypoint("Salida del ascensor, 2.º piso", "Lima 2 · 2.º piso", 49f, 31f, "Estamos en el segundo piso. Salimos del ascensor."),
+                Waypoint("Aula 225", "Lima 2 · 2.º piso · Aula 225", 46f, 37f, "Llegamos al Aula 225. La puerta está frente a vos."),
             ),
         ),
         MissionTemplate(
-            id = "biblioteca",
-            name = "Guiar a Biblioteca",
-            description = "Hall → ascensor → piso 1",
+            id = "uade-labs",
+            name = "Guiar a UADE Labs",
+            description = "Por el patio central hasta el edificio sobre Av. Independencia",
             waypoints = listOf(
-                pasilloPb,
-                ascensorPb,
-                salidaAscensor(1),
-                Waypoint("Biblioteca", "Piso 1 · Biblioteca", 22f, 12f, "Llegamos a la Biblioteca. El mostrador está a tu izquierda."),
+                hallLima1,
+                patio,
+                Waypoint("Patio, lado oeste", "Patio central · frente a UADE Labs", 40f, 78f, "Seguimos derecho. UADE Labs está adelante."),
+                Waypoint("UADE Labs", "UADE Labs · Planta baja", 28f, 82f, "Llegamos a UADE Labs. La entrada está frente a vos."),
             ),
         ),
         MissionTemplate(
-            id = "bedelia",
-            name = "Guiar a Bedelía",
-            description = "En planta baja, sin ascensor",
+            id = "parada-independencia",
+            name = "Guiar a la parada de autos",
+            description = "Salida por Independencia 2 a Av. Independencia (taxi, remís o familiar)",
             waypoints = listOf(
-                pasilloPb,
-                Waypoint("Bedelía", "Planta baja · Bedelía", 14f, -4f, "Llegamos a Bedelía. Hay una fila a tu derecha."),
+                hallLima1,
+                patio,
+                Waypoint("Independencia 2", "Independencia 2 · Planta baja", 40f, 60f, "Entramos a Independencia 2. Seguimos derecho hacia la avenida."),
+                Waypoint("Parada de autos", "Salida Av. Independencia · parada de autos", 6f, 58f, "Llegamos a la parada de autos de avenida Independencia. Esperá acá: el cordón está adelante."),
             ),
         ),
     )
@@ -95,7 +96,7 @@ class GuiaUadeProfile : ServiceProfile {
         accompanying = true
         crowd = 0
         crowdWarned = false
-        lastVoice = "Hola. Tomá el asa: vamos a ${mission.waypoints.last().name}."
+        lastVoice = "Hola. Tomá el asa. Destino: ${mission.waypoints.last().name}."
     }
 
     private fun personPresent(ctx: SimContext) = accompanying &&
