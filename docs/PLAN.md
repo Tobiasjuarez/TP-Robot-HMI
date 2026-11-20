@@ -13,8 +13,11 @@ Este documento cuenta cómo se construyó la app, etapa por etapa, qué decision
 | 0 | Repo base: MVVM, robot simulado, Room, pantallas y documentación | — (commit inicial) | Hecha |
 | 1 | Gradle como Rodando y caso de uso Guía UADE sobre el plano del Campus Monserrat | #1 | Hecha |
 | 2 | Figma: componentes, wireframes, 12 pantallas, flujo normal, flujo con falla, mapa de navegación y flujo de casos de uso | — (en Figma) | Hecha |
-| 3 | Documentación con el formato de Rodando | #2 | Hecha |
-| 4 | Evidencias de los cinco escenarios, APK en un release y video | — | En curso |
+| 3 | Documentación con el formato de Rodando, integrantes, wireframes y flujo de casos de uso | #2, #3 y #4 | Hecha |
+| 4 | APK compilado por GitHub Actions y publicado en el release v1.0; informe en PDF | #5 | Hecha |
+| 5 | Guía del proyecto para asistentes de IA (`AGENTS.md`) | #6 | Hecha |
+| 6 | Evidencias de los cinco escenarios (Lucas Casas) e informe con el Anexo A | #7 | Hecha |
+| 7 | Video de demostración | — | Pendiente |
 
 ## Forma de trabajo
 
@@ -53,12 +56,13 @@ Este documento cuenta cómo se construyó la app, etapa por etapa, qué decision
 
 - README, `docs/README.md` y este plan con el mismo formato que Rodando. Carpeta `evidencias/` con la lista de capturas.
 
-### Etapa 4 · Entrega final (en curso)
+### Etapas 4 a 7 · Entrega final
 
-- [x] Capturas de los cinco escenarios en [`evidencias/`](evidencias/)
-- [ ] APK en un release de GitHub
+- [x] APK en el [release v1.0](https://github.com/Tobiasjuarez/TP-Robot-HMI/releases/latest): lo compila GitHub Actions, que también corre los tests en cada PR (#5)
+- [x] Guía para asistentes de IA en `AGENTS.md` (#6)
+- [x] Capturas de los cinco escenarios en [`evidencias/`](evidencias/), tomadas por Lucas el 19/11 (24 imágenes)
+- [x] Informe final con las evidencias en el Anexo A y las observaciones de las pruebas, exportado a [`entrega-final.pdf`](entrega-final.pdf) (#7)
 - [ ] Video de demostración
-- [x] Informe final con las evidencias, exportado a PDF (Anexo A de `entrega-final.pdf`)
 
 ## Decisiones importantes
 

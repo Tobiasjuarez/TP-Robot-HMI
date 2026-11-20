@@ -39,5 +39,3 @@
 - **Reanudar exige reconocer todas las alertas críticas:** si quedan críticas de un escenario anterior, Reanudar sigue bloqueado. Es intencional, pero el motivo podría indicar cuántas quedan.
 - **El escenario propio se puede disparar sin misión:** la herramienta de Simulación lo acepta sin viaje en curso y queda un aviso por voz sin persona. Conviene habilitarlo solo con una misión activa.
 - **"Pendiente" dura menos de 1 s con buena conexión:** por la latencia simulada (0,4 a 1,2 s); se documenta en la desconexión (captura 11a).
-
-_(Completar con las decisiones del grupo.)_
