@@ -22,7 +22,6 @@ Qué pide la consigna y cómo lo cubrimos está en el `README.md` (sección "Qu�
 | Paso a paso de los 5 escenarios | `docs/escenarios.md` |
 | Capturas de los cinco escenarios | `docs/evidencias/` (tabla en su README) |
 | Registro de decisiones y limitaciones | `docs/decisiones.md` |
-| Preentrega entregada | `docs/preentrega.pdf` |
 | Informe de la entrega final (con evidencias) | `docs/entrega-final.pdf` |
 | Diseño | Figma: https://www.figma.com/design/4jqfkUGmYIYXSamN4MWbRV (páginas Componentes, Wireframes, Prototipo, Mapa de navegación y Flujo de casos de uso) |
 
@@ -79,13 +78,13 @@ Si un cambio necesita romper alguna, primero hablarlo con el equipo y anotarlo e
 
 ## Estado y pendientes (20/11/2026)
 
-- **Preentrega (20/11):** entregada con `docs/preentrega.pdf` y el link al Figma. El docente aceptó que ya tengamos avanzado lo de la entrega final.
+- **Entrega del 20/11:** se entregó la versión final completa (`docs/entrega-final.pdf`, Figma, APK y repositorio), aunque solo se pedía la preentrega; el docente lo aceptó.
 - **Hecho para la entrega final:** app con simulador, Room y tests; Figma (componentes, wireframes, 12 pantallas, mapa de navegación, flujo de casos de uso); APK en el release `v1.0` (GitHub Actions); 24 capturas en `docs/evidencias/`; informe `docs/entrega-final.pdf` con el Anexo A.
 
-Falta para la entrega final (fecha a confirmar):
+Falta:
 
 - [ ] Grabar el video de demostración y poner el link en el README y en el informe.
-- [ ] Regenerar `docs/entrega-final.pdf` con el link del video (el informe editable lo tiene Tobías).
+- [ ] Agregar el link del video al informe y regenerar `docs/entrega-final.pdf` (el informe editable lo tiene Tobías).
 - [ ] Verificar en la sede la ubicación de los ascensores de Lima 2 (hoy es aproximada).
 - [ ] Opcional: que "Disparar escenario propio" solo funcione con una misión en curso (ver observaciones en `docs/decisiones.md`).
 
