@@ -17,7 +17,8 @@ Este documento cuenta cómo se construyó la app, etapa por etapa, qué decision
 | 4 | APK compilado por GitHub Actions y publicado en el release v1.0; informe en PDF | #5 | Hecha |
 | 5 | Guía del proyecto para asistentes de IA (`AGENTS.md`) | #6 | Hecha |
 | 6 | Evidencias de los cinco escenarios (Lucas Casas) e informe con el Anexo A | #7 | Hecha |
-| 7 | Video de demostración | — | Pendiente |
+| 7 | Revisión general y preentrega (`preentrega.pdf`) | #8 | Hecha |
+| 8 | Video de demostración (entrega final) | — | Pendiente |
 
 ## Forma de trabajo
 
@@ -62,7 +63,8 @@ Este documento cuenta cómo se construyó la app, etapa por etapa, qué decision
 - [x] Guía para asistentes de IA en `AGENTS.md` (#6)
 - [x] Capturas de los cinco escenarios en [`evidencias/`](evidencias/), tomadas por Lucas el 19/11 (24 imágenes)
 - [x] Informe final con las evidencias en el Anexo A y las observaciones de las pruebas, exportado a [`entrega-final.pdf`](entrega-final.pdf) (#7)
-- [ ] Video de demostración
+- [x] Preentrega en [`preentrega.pdf`](preentrega.pdf), entregada el 20/11 (#8)
+- [ ] Video de demostración para la entrega final
 
 ## Decisiones importantes
 

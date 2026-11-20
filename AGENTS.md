@@ -20,10 +20,11 @@ Qué pide la consigna y cómo lo cubrimos está en el `README.md` (sección "Qu�
 | Arquitectura (mermaid) y ciclo de una orden | `docs/arquitectura.md` |
 | Contrato JSON propuesto (no es el protocolo oficial de Unitree) | `docs/contrato-json.md` |
 | Paso a paso de los 5 escenarios | `docs/escenarios.md` |
-| Capturas de evidencias (pendientes) | `docs/evidencias/` (lista en su README) |
+| Capturas de los cinco escenarios | `docs/evidencias/` (tabla en su README) |
 | Registro de decisiones y limitaciones | `docs/decisiones.md` |
-| Informe final ya armado | `docs/entrega-final.pdf` |
-| Diseño | Figma: https://www.figma.com/design/4jqfkUGmYIYXSamN4MWbRV (páginas Componentes, Wireframes, Prototipo, Mapa de navegación, Flujo de casos de uso) |
+| Preentrega entregada | `docs/preentrega.pdf` |
+| Informe de la entrega final (con evidencias) | `docs/entrega-final.pdf` |
+| Diseño | Figma: https://www.figma.com/design/4jqfkUGmYIYXSamN4MWbRV (páginas Componentes, Wireframes, Prototipo, Mapa de navegación y Flujo de casos de uso) |
 
 ## Arquitectura
 
@@ -50,7 +51,7 @@ Paquete `ar.edu.uade.robothmi`:
 1. **La UI nunca accede al simulador**: solo observa `RobotUiState` y manda eventos al ViewModel. El simulador se usa únicamente a través de `RobotRepository` / `SimulationControls`.
 2. **Habilitación de órdenes solo en `CommandRules`** (no duplicar `if`s en las pantallas). Umbrales: iniciar misión con batería ≥ 25 %, advertencia < 20 %, crítica < 10 %.
 3. Toda orden muestra su estado: **Pendiente, Confirmada, Rechazada o Sin respuesta** (6 s). "Confirmada" = el robot aceptó, no que terminó.
-4. **Solicitar detención** siempre visible y sin confirmación; es un comando de software simulado, no una parada de emergencia. Sin conexión solo se permiten detención y volver a punto seguro.
+4. **Solicitar detención** siempre visible y sin confirmación; se habilita cuando el robot se mueve o espera una decisión; es un comando de software simulado, no una parada de emergencia. Sin conexión solo se permiten detención y volver a punto seguro.
 5. **Reanudar** exige reconocer la alerta crítica y está bloqueado con batería crítica.
 6. **El robot no deja sola a la persona**: con batería crítica en misión pasa a "Requiere intervención" y espera; no vuelve solo a la base (`autoReturnOnCriticalBattery = false`).
 7. Todo estado se muestra con **texto + símbolo + color**, nunca solo color.
@@ -76,16 +77,16 @@ Si un cambio necesita romper alguna, primero hablarlo con el equipo y anotarlo e
 - Código y textos de la app en español rioplatense neutro ("Tocá", "Seleccioná"). Documentación en español, directa y sin relleno.
 - Si se agrega una pantalla, estado o regla nueva: actualizar Figma, `docs/PLAN.md` y, si corresponde, `docs/decisiones.md` y el informe.
 
-## Estado y pendientes (17/11/2026)
+## Estado y pendientes (20/11/2026)
 
-Hecho: app completa con simulador, Room y tests; Figma (componentes, wireframes, 12 pantallas, mapa de navegación, flujo de casos de uso); documentación; informe en PDF; APK compilado por GitHub Actions.
+- **Preentrega (20/11):** entregada con `docs/preentrega.pdf` y el link al Figma. El docente aceptó que ya tengamos avanzado lo de la entrega final.
+- **Hecho para la entrega final:** app con simulador, Room y tests; Figma (componentes, wireframes, 12 pantallas, mapa de navegación, flujo de casos de uso); APK en el release `v1.0` (GitHub Actions); 24 capturas en `docs/evidencias/`; informe `docs/entrega-final.pdf` con el Anexo A.
 
-Falta para el 20/11:
+Falta para la entrega final (fecha a confirmar):
 
-- [ ] Publicar el release `v1.0` en GitHub (crea el APK descargable).
-- [ ] Sacar las 17 capturas de los cinco escenarios y guardarlas en `docs/evidencias/` con los nombres de su README.
 - [ ] Grabar el video de demostración y poner el link en el README y en el informe.
-- [ ] Agregar las capturas y el video al informe y regenerar `docs/entrega-final.pdf` (el informe editable lo tiene Tobías).
+- [ ] Regenerar `docs/entrega-final.pdf` con el link del video (el informe editable lo tiene Tobías).
 - [ ] Verificar en la sede la ubicación de los ascensores de Lima 2 (hoy es aproximada).
+- [ ] Opcional: que "Disparar escenario propio" solo funcione con una misión en curso (ver observaciones en `docs/decisiones.md`).
 
-No conviene agregar funcionalidades grandes a esta altura: priorizar evidencias, video y estabilidad.
+No conviene agregar funcionalidades grandes: priorizar el video y la estabilidad.

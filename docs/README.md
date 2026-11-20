@@ -1,5 +1,6 @@
 # Documentación
 
+- [`preentrega.pdf`](preentrega.pdf) — Preentrega (20/11/2026): problema, entorno, actores, misión, elección del robot, recorrido, telemetría, comandos, riesgos y Figma navegable.
 - [`entrega-final.pdf`](entrega-final.pdf) — Informe de la entrega final: caso de uso, interacción, Figma, APK y simulación, pruebas, riesgos, decisiones, repositorio e integrantes. El Anexo A tiene las capturas de los cinco escenarios.
 - [`PLAN.md`](PLAN.md) — Plan de desarrollo: etapas, PRs, decisiones, cómo probar todo y pendientes.
 - [`caso-de-uso.md`](caso-de-uso.md) — Problema, entorno, actores, misión, por qué un robot y por qué Go2, capacidades, telemetría, comandos y riesgos.

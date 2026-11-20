@@ -88,6 +88,13 @@ Diagrama y estados en [`docs/arquitectura.md`](docs/arquitectura.md); contrato d
 - **Commits:** chicos y frecuentes, con prefijo: `feat:`, `fix:`, `docs:`, `test:`, `refactor:`, `chore:`.
 - **Pull requests:** con la plantilla de `.github/pull_request_template.md` (qué cambia, punto de la consigna, cómo se probó, uso de IA). Al menos un compañero revisa antes de mergear.
 
+## Entregas
+
+| Entrega | Qué se entrega | Estado |
+| --- | --- | --- |
+| Preentrega (20/11/2026) | [`docs/preentrega.pdf`](docs/preentrega.pdf) y el [Figma navegable](https://www.figma.com/design/4jqfkUGmYIYXSamN4MWbRV) | Entregada |
+| Entrega final | [`docs/entrega-final.pdf`](docs/entrega-final.pdf), Figma, [APK v1.0](https://github.com/Tobiasjuarez/TP-Robot-HMI/releases/latest), este repositorio, evidencias en [`docs/evidencias/`](docs/evidencias/) y video | Falta el video |
+
 ## Documentación
 
 Plan de desarrollo con todas las etapas, decisiones, cómo probar todo y pendientes: [`docs/PLAN.md`](docs/PLAN.md). Caso de uso, diseño en Figma, arquitectura, escenarios y evidencias: ver [`docs/`](docs/).
