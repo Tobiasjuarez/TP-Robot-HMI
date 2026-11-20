@@ -88,6 +88,17 @@ Diagrama y estados en [`docs/arquitectura.md`](docs/arquitectura.md); contrato d
 - **Commits:** chicos y frecuentes, con prefijo: `feat:`, `fix:`, `docs:`, `test:`, `refactor:`, `chore:`.
 - **Pull requests:** con la plantilla de `.github/pull_request_template.md` (qué cambia, punto de la consigna, cómo se probó, uso de IA). Al menos un compañero revisa antes de mergear.
 
+## Entrega (20/11/2026)
+
+Se entregó la versión final completa, aunque en esta fecha solo se pedía la preentrega:
+
+- Informe: [`docs/entrega-final.pdf`](docs/entrega-final.pdf) (caso de uso, interacción, Figma, APK y simulación, pruebas, riesgos, decisiones, repositorio, integrantes y Anexo A con las evidencias).
+- [Figma navegable](https://www.figma.com/design/4jqfkUGmYIYXSamN4MWbRV): componentes, wireframes, prototipo con flujo normal y con falla, mapa de navegación y flujo de casos de uso.
+- [APK v1.0](https://github.com/Tobiasjuarez/TP-Robot-HMI/releases/latest) y este repositorio con el código fuente.
+- Evidencias de los cinco escenarios en [`docs/evidencias/`](docs/evidencias/).
+
+Pendiente: video de demostración.
+
 ## Documentación
 
 Plan de desarrollo con todas las etapas, decisiones, cómo probar todo y pendientes: [`docs/PLAN.md`](docs/PLAN.md). Caso de uso, diseño en Figma, arquitectura, escenarios y evidencias: ver [`docs/`](docs/).
