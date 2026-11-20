@@ -55,10 +55,10 @@ Este documento cuenta cómo se construyó la app, etapa por etapa, qué decision
 
 ### Etapa 4 · Entrega final (en curso)
 
-- [ ] Capturas de los cinco escenarios en [`evidencias/`](evidencias/)
+- [x] Capturas de los cinco escenarios en [`evidencias/`](evidencias/)
 - [ ] APK en un release de GitHub
 - [ ] Video de demostración
-- [ ] Informe final con las evidencias, exportado a PDF
+- [x] Informe final con las evidencias, exportado a PDF (Anexo A de `entrega-final.pdf`)
 
 ## Decisiones importantes
 

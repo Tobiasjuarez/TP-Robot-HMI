@@ -33,4 +33,11 @@
 - El plano sale del Mapa UADE, pero la ubicación de ascensores y pasillos interiores es aproximada; los avisos por voz son textos, no audio.
 - Cualquier prueba con personas reales requeriría entorno controlado y supervisión permanente.
 
+### Observaciones de las pruebas (19/11/2026)
+
+- **Una orden "Sin respuesta" puede haberse ejecutado:** en la desconexión, la detención quedó "Sin respuesta" y al volver la conexión el robot estaba detenido. Confirma el criterio de la app: verificar el estado antes de reintentar.
+- **Reanudar exige reconocer todas las alertas críticas:** si quedan críticas de un escenario anterior, Reanudar sigue bloqueado. Es intencional, pero el motivo podría indicar cuántas quedan.
+- **El escenario propio se puede disparar sin misión:** la herramienta de Simulación lo acepta sin viaje en curso y queda un aviso por voz sin persona. Conviene habilitarlo solo con una misión activa.
+- **"Pendiente" dura menos de 1 s con buena conexión:** por la latencia simulada (0,4 a 1,2 s); se documenta en la desconexión (captura 11a).
+
 _(Completar con las decisiones del grupo.)_
